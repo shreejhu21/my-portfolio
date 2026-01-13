@@ -64,7 +64,7 @@ class Command(BaseCommand):
             technologies="C, Linux Kernel, Assembly, GDB, Bash",
             date=date(2023, 11, 1),
             link="https://github.com/shreejhu21/Kernel-buffer-Overflow-Attack-and-Defense",
-            image="projects/kernel_buffer_overflow.png"
+            image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg"
         )
         Project.objects.create(
             title="EFTT: Encrypted File Transfer Tool",
@@ -72,7 +72,7 @@ class Command(BaseCommand):
             technologies="Python, Cryptography, TCP/IP, Socket Programming",
             date=date(2023, 5, 15),
             link="https://github.com/shreejhu21/EFTT",
-            image="projects/encrypted_file_transfer.png"
+            image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg"
         )
         Project.objects.create(
             title="SiteScan: OWASP Zapper Web Scanner",
@@ -80,7 +80,7 @@ class Command(BaseCommand):
             technologies="Python, Requests, BeautifulSoup, HTML/CSS",
             date=date(2024, 1, 20),
             link="https://github.com/shreejhu21/sitescan",
-            image="projects/owasp_scanner.png"
+            image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg"
         )
         self.stdout.write(self.style.SUCCESS('Created project entries'))
 

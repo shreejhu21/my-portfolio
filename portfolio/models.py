@@ -41,6 +41,7 @@ class Project(models.Model):
     technologies = models.CharField(max_length=200)
     link = models.URLField(blank=True)
     image = models.ImageField(upload_to='projects/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True, help_text="External image URL (optional)")
     date = models.DateField(null=True, blank=True)
 
     def __str__(self):

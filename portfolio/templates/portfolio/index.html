@@ -167,7 +167,9 @@
                     <a href="{{ project.link }}" target="_blank" class="project-card-link">
                         {% endif %}
                         <div class="project-image">
-                            {% if project.image %}
+                            {% if project.image_url %}
+                            <img src="{{ project.image_url }}" alt="{{ project.title }}">
+                            {% elif project.image %}
                             <img src="{{ project.image.url }}" alt="{{ project.title }}">
                             {% else %}
                             <div class="placeholder-image">
