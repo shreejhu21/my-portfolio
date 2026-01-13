@@ -24,9 +24,9 @@ class Command(BaseCommand):
         Education.objects.all().delete()
         Education.objects.create(
             institution="Binghamton University, State University of New York",
-            degree="Master of Science in Computer Science",
-            start_date=date(2025, 1, 1), # Approximate based on Exp Dec 2026
-            end_date=date(2026, 12, 31),
+            degree="Master of Science in Computer Science (3.5+1.5 Transfer Program with SRM)",
+            start_date=date(2025, 1, 1),
+            end_date=date(2026, 12, 1),
             gpa="3.14/4.00",
             coursework="Design & Analysis of Algorithms, Systems Programming, Database Systems, Computer Networks, Science of Cybersecurity, Introduction to Computer Security"
         )
@@ -44,14 +44,14 @@ class Command(BaseCommand):
             company="iByteCode Technologies Pvt Ltd",
             role="JavaScript Developer Intern",
             start_date=date(2023, 6, 1),
-            end_date=date(2023, 12, 31),
+            end_date=date(2023, 12, 1),
             description="Coordinated integration of UI concepts, libraries, and internal style guides to maintain consistent and scalable front-end development.\nEnhanced website functionality through front-end features and database-interaction tasks to improve usability and reliability.\nBuilt an Angular CRUD module with data binding and form validation to deliver stable create/read/update/delete workflows."
         )
         Experience.objects.create(
             company="Smart and Easy Solutions",
             role="Full Stack Web Developer Trainee",
             start_date=date(2023, 6, 1),
-            end_date=date(2023, 7, 31),
+            end_date=date(2023, 7, 1),
             description="Developed responsive web pages using HTML, CSS, JavaScript, and Bootstrap to ensure consistent behavior across devices/browsers.\nCompleted small assigned tasks and observed backend workflow to understand end-to-end request/response integration.\nProvided regular updates and participated in daily stand-ups to support progress tracking and task coordination."
         )
         self.stdout.write(self.style.SUCCESS('Created experience entries'))
@@ -60,25 +60,25 @@ class Command(BaseCommand):
         Project.objects.all().delete()
         Project.objects.create(
             title="Kernel Buffer Overflow Attack & Defense",
-            description="Demonstrated a buffer overflow vulnerability in a custom Linux kernel module. Developed a proof-of-concept exploit to gain root privileges and implemented a patch using secure coding practices (bounds checking).",
-            technologies="C, Linux Kernel, Assembly, GDB, Bash",
-            date=date(2023, 11, 1),
+            description="Implemented a vulnerable Linux kernel module and reproduced privilege escalation via buffer overflow in a controlled environment for safe exploitation study. Designed defenses (bounds checks, input sanitization, stack canary concepts) and documented mitigations to reduce overflow risk. Benchmarked overhead using micro-tests and observed minimal latency impact while maintaining protections.",
+            technologies="C, Linux Kernel Modules, Kernel Memory Management, GCC, Make",
+            date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/Kernel-buffer-Overflow-Attack-and-Defense",
             image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg"
         )
         Project.objects.create(
-            title="EFTT: Encrypted File Transfer Tool",
-            description="Built a secure file transfer application using Python and TCP sockets. Implemented AES-256 encryption for data confidentiality and RSA for key exchange. Features include integrity checks (SHA-256) and user authentication.",
-            technologies="Python, Cryptography, TCP/IP, Socket Programming",
-            date=date(2023, 5, 15),
+            title="EFTT: Encrypted File Transfer Tool Client–Server System",
+            description="Implemented client-side TCP file transfer with chunking, buffer management, and error handling to ensure reliable transmission. Managed memory allocation and safe file I/O to prevent corruption and runtime failures. Supported concurrent transfers using POSIX threads to handle multiple clients efficiently.",
+            technologies="C, TCP Sockets, POSIX Threads, Linux, File I/O",
+            date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/EFTT",
             image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg"
         )
         Project.objects.create(
-            title="SiteScan: OWASP Zapper Web Scanner",
-            description="Developed a lightweight web vulnerability scanner inspired by OWASP ZAP. Detects common vulnerabilities like SQL Injection and XSS using heuristic analysis and payload injection. Generates detailed HTML reports.",
-            technologies="Python, Requests, BeautifulSoup, HTML/CSS",
-            date=date(2024, 1, 20),
+            title="OWASP Zapper Web Vulnerability Scanner",
+            description="Built a Django app to orchestrate Wapiti scans via UI workflow to automate scanning end-to-end. Analyzed scan findings and HTTP behavior to flag SQLi/XSS/CSRF indicators. Generated structured reports to support remediation and secure development practices.",
+            technologies="Python, Django, HTTP, HTML/CSS, Wapiti",
+            date=date(2025, 5, 1),
             link="https://github.com/shreejhu21/sitescan",
             image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg"
         )
@@ -142,6 +142,6 @@ class Command(BaseCommand):
         Leadership.objects.create(
             role="Treasurer",
             organization="CS-GSO (Computer Science Graduate Student Organization)",
-            description="Managed budget allocation for student events and coordinated with university administration."
+            description="Managed budgeting, expense tracking, and reimbursements to support student organization events and operations. Assisted with event planning, outreach, scheduling, and on-site coordination beyond finance responsibilities. Provided technical support during events, including AV setup, presentation support, and troubleshooting."
         )
         self.stdout.write(self.style.SUCCESS('Created leadership entries'))
