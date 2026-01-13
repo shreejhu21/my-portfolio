@@ -42,7 +42,8 @@ class Project(models.Model):
     link = models.URLField(blank=True)
     image = models.ImageField(upload_to='projects/', blank=True, null=True)
     image_url = models.URLField(blank=True, null=True, help_text="External image URL (optional)")
-    date = models.DateField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    date = models.DateField(null=True, blank=True, help_text="End date or completion date")
 
     def __str__(self):
         return self.title

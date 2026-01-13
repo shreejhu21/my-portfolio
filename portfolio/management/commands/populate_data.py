@@ -62,6 +62,7 @@ class Command(BaseCommand):
             title="Kernel Buffer Overflow Attack & Defense",
             description="Implemented a vulnerable Linux kernel module and reproduced privilege escalation via buffer overflow in a controlled environment for safe exploitation study. Designed defenses (bounds checks, input sanitization, stack canary concepts) and documented mitigations to reduce overflow risk. Benchmarked overhead using micro-tests and observed minimal latency impact while maintaining protections.",
             technologies="C, Linux Kernel Modules, Kernel Memory Management, GCC, Make",
+            start_date=date(2025, 6, 1),
             date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/Kernel-buffer-Overflow-Attack-and-Defense",
             image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg"
@@ -70,14 +71,16 @@ class Command(BaseCommand):
             title="EFTT: Encrypted File Transfer Tool Client–Server System",
             description="Implemented client-side TCP file transfer with chunking, buffer management, and error handling to ensure reliable transmission. Managed memory allocation and safe file I/O to prevent corruption and runtime failures. Supported concurrent transfers using POSIX threads to handle multiple clients efficiently.",
             technologies="C, TCP Sockets, POSIX Threads, Linux, File I/O",
+            start_date=date(2025, 6, 1),
             date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/EFTT",
             image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg"
         )
         Project.objects.create(
-            title="OWASP Zapper Web Vulnerability Scanner",
+            title="SiteScan: OWASP Zapper Web Scanner",
             description="Built a Django app to orchestrate Wapiti scans via UI workflow to automate scanning end-to-end. Analyzed scan findings and HTTP behavior to flag SQLi/XSS/CSRF indicators. Generated structured reports to support remediation and secure development practices.",
             technologies="Python, Django, HTTP, HTML/CSS, Wapiti",
+            start_date=date(2025, 1, 1),
             date=date(2025, 5, 1),
             link="https://github.com/shreejhu21/sitescan",
             image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg"

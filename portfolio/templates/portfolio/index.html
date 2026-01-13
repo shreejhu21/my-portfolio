@@ -184,7 +184,12 @@
                         </div>
                         <div class="project-content">
                             <div class="project-meta">
-                                <span class="project-date">{{ project.date|date:"M Y" }}</span>
+                                <span class="project-date">
+                                    {% if project.start_date %}
+                                    {{ project.start_date|date:"M Y" }} -
+                                    {% endif %}
+                                    {{ project.date|date:"M Y" }}
+                                </span>
                             </div>
                             <h3>{{ project.title }}</h3>
                             <p class="description">{{ project.description|truncatewords:20 }}</p>
@@ -235,7 +240,8 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">Expected: {{ edu.end_date|date:"M Y" }}</span>
+                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or
+                                    edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
                                 <h4>{{ edu.degree }}</h4>
                                 <span class="company">{{ edu.institution }}</span>
                                 {% if edu.gpa %}
