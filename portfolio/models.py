@@ -48,6 +48,12 @@ class Project(models.Model):
     metrics = models.CharField(max_length=200, blank=True, help_text="Key metrics (latency, throughput, etc.)")
     demo_command = models.CharField(max_length=200, blank=True, help_text="1-2 commands to run/demo")
 
+    @property
+    def technology_list(self):
+        if self.technologies:
+            return [t.strip() for t in self.technologies.split(',')]
+        return []
+
     def __str__(self):
         return self.title
 
