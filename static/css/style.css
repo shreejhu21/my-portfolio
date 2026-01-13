@@ -864,6 +864,18 @@ body {
     gap: 2.5rem;
 }
 
+.impact-highlight {
+    background: rgba(0, 242, 255, 0.1);
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px dashed var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.impact-highlight strong {
+    color: var(--primary-color) !important;
+}
+
 .column-title {
     font-size: 1.5rem;
     margin-bottom: 2rem;
