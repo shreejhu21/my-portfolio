@@ -222,8 +222,7 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">{{ exp.start_date|date:"M Y" }} - {% if exp.end_date %}{{
-                                    exp.end_date|date:"M Y" }}{% else %}Present{% endif %}</span>
+
                                 <h4>{{ exp.role }}</h4>
                                 <span class="company">{{ exp.company }}</span>
                                 <p>{{ exp.description|linebreaksbr }}</p>
@@ -240,7 +239,8 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
+                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or
+                                    edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
                                 <h4>{{ edu.degree }}</h4>
                                 <span class="company">{{ edu.institution }}</span>
                                 {% if edu.gpa %}
