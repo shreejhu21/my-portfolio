@@ -63,7 +63,6 @@
 
                 <div class="hero-btns">
                     <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="mailto:{{ profile.email }}" class="btn btn-outline">Resume <i class="fas fa-file-pdf"></i></a>
                 </div>
 
                 <div class="social-links">
@@ -256,7 +255,8 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
+                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or
+                                    edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
                                 <h4>{{ edu.degree }}</h4>
                                 <span class="company">{{ edu.institution }}</span>
                                 {% if edu.gpa %}
@@ -341,7 +341,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">SS<span class="dot">.</span></div>
-                <p>&copy; {% now "Y" %} {{ profile.name }}. Built with Django & <i class="fas fa-heart" style="color: var(--secondary-color);"></i></p>
+                <p>&copy; {% now "Y" %} {{ profile.name }}. Built with Django & <i class="fas fa-heart"
+                        style="color: var(--secondary-color);"></i></p>
             </div>
         </div>
     </footer>
