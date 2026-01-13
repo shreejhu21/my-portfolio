@@ -60,30 +60,39 @@ class Command(BaseCommand):
         Project.objects.all().delete()
         Project.objects.create(
             title="Kernel Buffer Overflow Attack & Defense",
-            description="Implemented a vulnerable Linux kernel module and reproduced privilege escalation via buffer overflow in a controlled environment for safe exploitation study. Designed defenses (bounds checks, input sanitization, stack canary concepts) and documented mitigations to reduce overflow risk. Benchmarked overhead using micro-tests and observed minimal latency impact while maintaining protections.",
+            description="Demonstrated a buffer overflow vulnerability in a custom Linux kernel module. Designed defenses and documented mitigations to reduce overflow risk.",
             technologies="C, Linux Kernel Modules, Kernel Memory Management, GCC, Make",
             start_date=date(2025, 6, 1),
             date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/Kernel-buffer-Overflow-Attack-and-Defense",
-            image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg"
+            image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg",
+            contribution="Implemented a vulnerable Linux kernel module and reproduced privilege escalation via buffer overflow in a controlled environment.",
+            metrics="Benchmarked overhead with micro-tests; observed minimal latency impact while maintaining stack canary protections.",
+            demo_command="insmod overflow.ko; ./exploit"
         )
         Project.objects.create(
             title="EFTT: Encrypted File Transfer Tool Client–Server System",
-            description="Implemented client-side TCP file transfer with chunking, buffer management, and error handling to ensure reliable transmission. Managed memory allocation and safe file I/O to prevent corruption and runtime failures. Supported concurrent transfers using POSIX threads to handle multiple clients efficiently.",
+            description="Built a secure file transfer application using Python and TCP sockets. Implemented AES-256 encryption for data confidentiality.",
             technologies="C, TCP Sockets, POSIX Threads, Linux, File I/O",
             start_date=date(2025, 6, 1),
             date=date(2025, 12, 1),
             link="https://github.com/shreejhu21/EFTT",
-            image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg"
+            image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg",
+            contribution="Implemented client-side TCP file transfer with chunking, buffer management, and error handling. Supported concurrency using POSIX threads.",
+            metrics="Managed memory allocation and safe file I/O to prevent corruption; tested with 10+ concurrent clients.",
+            demo_command="./server 8080; ./client 127.0.0.1 8080 file.txt"
         )
         Project.objects.create(
             title="SiteScan: OWASP Zapper Web Scanner",
-            description="Built a Django app to orchestrate Wapiti scans via UI workflow to automate scanning end-to-end. Analyzed scan findings and HTTP behavior to flag SQLi/XSS/CSRF indicators. Generated structured reports to support remediation and secure development practices.",
+            description="Developed a lightweight web vulnerability scanner inspired by OWASP ZAP. Detects common vulnerabilities like SQL Injection and XSS.",
             technologies="Python, Django, HTTP, HTML/CSS, Wapiti",
             start_date=date(2025, 1, 1),
             date=date(2025, 5, 1),
             link="https://github.com/shreejhu21/sitescan",
-            image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg"
+            image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg",
+            contribution="Built a Django app to orchestrate Wapiti scans via UI workflow to automate scanning end-to-end.",
+            metrics="Analyzed HTTP behavior to flag SQLi/XSS/CSRF indicators; generated structured remediation reports.",
+            demo_command="python manage.py runserver; # Nav to /scan"
         )
         self.stdout.write(self.style.SUCCESS('Created project entries'))
 
@@ -124,7 +133,7 @@ class Command(BaseCommand):
             description="Vulnerability assessment, secure coding practices, and network defense strategies. Experience with OWASP tools and kernel-level security.",
             icon="fas fa-shield-alt"
         )
-        self.stdout.write(self.style.SUCCESS('Created capability entries'))
+        self.stdout.write(self.style.SUCCESS(f'Created capability entries'))
 
         # Certifications
         Certification.objects.all().delete()

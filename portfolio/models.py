@@ -44,6 +44,9 @@ class Project(models.Model):
     image_url = models.URLField(blank=True, null=True, help_text="External image URL (optional)")
     start_date = models.DateField(null=True, blank=True)
     date = models.DateField(null=True, blank=True, help_text="End date or completion date")
+    contribution = models.TextField(blank=True, help_text="Specific contribution to the project")
+    metrics = models.CharField(max_length=200, blank=True, help_text="Key metrics (latency, throughput, etc.)")
+    demo_command = models.CharField(max_length=200, blank=True, help_text="1-2 commands to run/demo")
 
     def __str__(self):
         return self.title

@@ -52,16 +52,12 @@
 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number">3+</span>
-                        <span class="stat-label">Years Coding</span>
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Security + Systems Projects</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">10+</span>
-                        <span class="stat-label">Tech Stack</span>
+                        <span class="stat-number">6 Mo.</span>
+                        <span class="stat-label">Angular Internship</span>
                     </div>
                 </div>
 
@@ -192,10 +188,34 @@
                                 </span>
                             </div>
                             <h3>{{ project.title }}</h3>
-                            <p class="description">{{ project.description|truncatewords:20 }}</p>
+                            <p class="description">{{ project.description }}</p>
+
+                            <div class="project-proof">
+                                {% if project.contribution %}
+                                <div class="proof-item">
+                                    <i class="fas fa-user-gear"></i>
+                                    <span><strong>Role:</strong> {{ project.contribution }}</span>
+                                </div>
+                                {% endif %}
+
+                                {% if project.metrics %}
+                                <div class="proof-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span><strong>Impact:</strong> {{ project.metrics }}</span>
+                                </div>
+                                {% endif %}
+
+                                {% if project.demo_command %}
+                                <div class="proof-item demo-box">
+                                    <i class="fas fa-terminal"></i>
+                                    <code>{{ project.demo_command }}</code>
+                                </div>
+                                {% endif %}
+                            </div>
+
                             <div class="tech-tags">
-                                {% for tech in project.technologies.split|slice:":3" %}
-                                <span class="tech-tag">{{ tech|cut:"," }}</span>
+                                {% for tech in project.technologies.split|slice:":5" %}
+                                <span class="tech-tag">{{ tech|strip|cut:"," }}</span>
                                 {% endfor %}
                             </div>
                         </div>
@@ -239,7 +259,8 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
+                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or
+                                    edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
                                 <h4>{{ edu.degree }}</h4>
                                 <span class="company">{{ edu.institution }}</span>
                                 {% if edu.gpa %}
@@ -323,8 +344,9 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">SS.</div>
-                <p>&copy; {% now "Y" %} {{ profile.name }}. Built with Django & <i class="fas fa-heart"></i></p>
+                <div class="footer-logo">SS<span class="dot">.</span></div>
+                <p>&copy; {% now "Y" %} {{ profile.name }}. Built with Django & <i class="fas fa-heart"
+                        style="color: var(--secondary-color);"></i></p>
             </div>
         </div>
     </footer>
