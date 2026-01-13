@@ -1,0 +1,329 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+</head>
+
+<body>
+    <div class="background-gradient">
+        <div class="blob-extra"></div>
+    </div>
+    <div class="noise-overlay"></div>
+    <div id="cursor-trail"></div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Shreejha Sukanthan<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact" class="btn-primary">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="about" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="status-badge">
+                    <span class="status-dot"></span> Available for Opportunities
+                </div>
+                <h1 class="name glitch" data-text="{{ profile.name }}">{{ profile.name }}</h1>
+                <h2 class="title typing-effect">{{ profile.title }}</h2>
+                <p class="bio">{{ profile.bio }}</p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Years Coding</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Tech Stack</span>
+                    </div>
+                </div>
+
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+                    {% if profile.resume %}
+                    <a href="{{ profile.resume.url }}" class="btn btn-outline" target="_blank">Download CV <i
+                            class="fas fa-download"></i></a>
+                    {% endif %}
+                </div>
+
+                <div class="social-links">
+                    {% if profile.linkedin %}
+                    <a href="{{ profile.linkedin }}" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    {% endif %}
+                    {% if profile.github %}
+                    <a href="{{ profile.github }}" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    {% endif %}
+                    <a href="mailto:{{ profile.email }}" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="tech-stack-orbit">
+                    <div class="center-logo"><i class="fas fa-code"></i></div>
+                    <div class="orbit-ring ring-1">
+                        <div class="orbit-item" style="--angle: 0deg"><i class="fab fa-python"></i></div>
+                        <div class="orbit-item" style="--angle: 120deg"><i class="fab fa-js"></i></div>
+                        <div class="orbit-item" style="--angle: 240deg"><i class="fas fa-database"></i></div>
+                    </div>
+                    <div class="orbit-ring ring-2">
+                        <div class="orbit-item" style="--angle: 60deg"><i class="fab fa-linux"></i></div>
+                        <div class="orbit-item" style="--angle: 180deg"><i class="fab fa-docker"></i></div>
+                        <div class="orbit-item" style="--angle: 300deg"><i class="fas fa-shield-alt"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="capabilities" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What I Do</h2>
+                <p class="section-subtitle">Combining security expertise with full-stack engineering to build robust
+                    systems.</p>
+            </div>
+
+            <div class="capabilities-grid">
+                {% for cap in capabilities %}
+                <div class="capability-card glass-card">
+                    <div class="icon-box">
+                        <i class="{{ cap.icon }}"></i>
+                    </div>
+                    <h3>{{ cap.title }}</h3>
+                    <p>{{ cap.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Arsenal</h2>
+            </div>
+
+            <div class="skills-wrapper">
+                {% for category, skills in skills_by_category.items %}
+                <div class="skill-group {% if 'Core Concepts' in category %}wide-group{% endif %}">
+                    <h3 class="skill-category-title">{{ category }}</h3>
+                    <div class="skill-bars">
+                        {% for skill in skills %}
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>{{ skill.name }}</span>
+                            </div>
+                            <div class="progress-line" data-width="{% cycle '90%' '85%' '80%' '95%' %}">
+                                <span></span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">A selection of my recent work in security and development.</p>
+            </div>
+
+            <div class="projects-grid">
+                {% for project in projects %}
+                <div class="project-card glass-card">
+                    {% if project.link %}
+                    <a href="{{ project.link }}" target="_blank" class="project-card-link">
+                        {% endif %}
+                        <div class="project-image">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            {% else %}
+                            <div class="placeholder-image">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            {% endif %}
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-date">{{ project.date|date:"M Y" }}</span>
+                            </div>
+                            <h3>{{ project.title }}</h3>
+                            <p class="description">{{ project.description|truncatewords:20 }}</p>
+                            <div class="tech-tags">
+                                {% for tech in project.technologies.split|slice:":3" %}
+                                <span class="tech-tag">{{ tech|cut:"," }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if project.link %}
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience & Education</h2>
+            </div>
+
+            <div class="resume-grid">
+                <div class="resume-column">
+                    <h3 class="column-title"><i class="fas fa-briefcase"></i> Experience</h3>
+                    <div class="timeline">
+                        {% for exp in experience %}
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="date">{{ exp.start_date|date:"M Y" }} - {% if exp.end_date %}{{
+                                    exp.end_date|date:"M Y" }}{% else %}Present{% endif %}</span>
+                                <h4>{{ exp.role }}</h4>
+                                <span class="company">{{ exp.company }}</span>
+                                <p>{{ exp.description|linebreaksbr }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="resume-column">
+                    <h3 class="column-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="timeline">
+                        {% for edu in education %}
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content glass-card">
+                                <span class="date">Expected: {{ edu.end_date|date:"M Y" }}</span>
+                                <h4>{{ edu.degree }}</h4>
+                                <span class="company">{{ edu.institution }}</span>
+                                {% if edu.gpa %}
+                                <p class="gpa">GPA: {{ edu.gpa }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications & Leadership</h2>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="certifications-column">
+                    <h3 class="column-title"><i class="fas fa-certificate"></i> Certifications</h3>
+                    <div class="cert-list">
+                        {% for cert in certifications %}
+                        <div class="cert-item glass-card">
+                            <div class="cert-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="cert-details">
+                                <h4>{{ cert.name }}</h4>
+                                <span class="issuer">{{ cert.issuer }}</span>
+                                <span class="date">{{ cert.date|date:"M Y" }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="leadership-column">
+                    <h3 class="column-title"><i class="fas fa-users"></i> Leadership</h3>
+                    <div class="leadership-list">
+                        {% for lead in leadership %}
+                        <div class="leadership-item glass-card">
+                            <h4>{{ lead.role }}</h4>
+                            <span class="organization">{{ lead.organization }}</span>
+                            <p>{{ lead.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-wrapper glass-card">
+                <div class="contact-text">
+                    <h2>Let's Work Together</h2>
+                    <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
+                        I'll try my best to get back to you!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ profile.email }}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>{{ profile.phone }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-action">
+                    <a href="mailto:{{ profile.email }}" class="btn btn-primary btn-large">Say Hello</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SS.</div>
+                <p>&copy; {% now "Y" %} {{ profile.name }}. Built with Django & <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
