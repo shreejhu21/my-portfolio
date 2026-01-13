@@ -255,8 +255,7 @@
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content glass-card">
-                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or
-                                    edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
+                                <span class="date">{% if 'Expected' in edu.degree or 'Expected' in edu.institution or edu.end_date.year > 2025 %}Expected: {% endif %}{{ edu.end_date|date:"M Y" }}</span>
                                 <h4>{{ edu.degree }}</h4>
                                 <span class="company">{{ edu.institution }}</span>
                                 {% if edu.gpa %}
