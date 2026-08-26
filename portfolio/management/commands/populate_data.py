@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.core.management.base import BaseCommand
 from portfolio.models import Profile, Education, Experience, Project, Skill, Capability, Certification, Leadership
 from datetime import date
@@ -10,16 +11,19 @@ class Command(BaseCommand):
         Profile.objects.all().delete()
         profile = Profile.objects.create(
             name="Shreejha Sukanthan",
-            title="Master of Science in Computer Science Student",
-            bio="Willing to Relocate. Specialized in Cybersecurity and Systems Programming. Passionate about building secure, low-level systems and scalable web applications.",
+            title="M.S. Computer Science | Cybersecurity • Networking • Linux • Systems Security",
+            bio=(
+                "M.S. Computer Science student at Binghamton University focused on "
+                "cybersecurity, networking, Linux, and systems security. Hands-on "
+                "experience with TCP/IP, TCP sockets, Linux kernel security, "
+                "vulnerability assessment, web security, and systems programming."
+            ),
             email="ssukanthan@binghamton.edu",
-            phone="(607) 308-1119",
+            phone="",
             linkedin="https://www.linkedin.com/in/shreejha-sukanthan",
             github="https://github.com/shreejhu21",
             portfolio_link=""
         )
-        # Ensure a dummy resume file path exists if needed, or just leave it for now.
-        # Ideally the user would upload a real one, but I'll make sure the button appears.
 
         self.stdout.write(self.style.SUCCESS(f'Created profile for {profile.name}'))
 
@@ -27,17 +31,26 @@ class Command(BaseCommand):
         Education.objects.all().delete()
         Education.objects.create(
             institution="Binghamton University, State University of New York",
-            degree="Master of Science in Computer Science (3.5+1.5 Transfer Program with SRM)",
+            degree="M.S. in Computer Science",
             start_date=date(2025, 1, 1),
             end_date=date(2026, 12, 1),
-            gpa="3.14/4.00",
-            coursework="Design & Analysis of Algorithms, Systems Programming, Database Systems, Computer Networks, Science of Cybersecurity, Introduction to Computer Security"
+            gpa="",
+            coursework=(
+                "Computer Networks, Introduction to Computer Security, "
+                "Science of Cybersecurity, Systems Programming, Database Systems, "
+                "Design & Analysis of Algorithms"
+            )
         )
         Education.objects.create(
-            institution="SRM Institute of Science & Technology Ramapuram, Chennai, India",
-            degree="Bachelor of Technology in Computer Science and Engineering with specialization in cybersecurity",
+            institution="SRM Institute of Science & Technology, Chennai, India",
+            degree="B.Tech in Computer Science & Engineering (Cyber Security)",
+            start_date=date(2021, 1, 1),
             end_date=date(2025, 5, 1),
-            coursework="Data Structures and Algorithms, Object-Oriented Programming, Operating Systems"
+            gpa="8.8/10",
+            coursework=(
+                "Information Assurance and Security, "
+                "Penetration Testing & Vulnerability Assessment"
+            )
         )
         self.stdout.write(self.style.SUCCESS('Created education entries'))
 
@@ -48,64 +61,135 @@ class Command(BaseCommand):
             role="JavaScript Developer Intern",
             start_date=date(2023, 6, 1),
             end_date=date(2023, 12, 1),
-            description="Coordinated integration of UI concepts, libraries, and internal style guides to maintain consistent and scalable front-end development.\nEnhanced website functionality through front-end features and database-interaction tasks to improve usability and reliability.\nBuilt an Angular CRUD module with data binding and form validation to deliver stable create/read/update/delete workflows."
-        )
-        Experience.objects.create(
-            company="Smart and Easy Solutions",
-            role="Full Stack Web Developer Trainee",
-            start_date=date(2023, 6, 1),
-            end_date=date(2023, 7, 1),
-            description="Developed responsive web pages using HTML, CSS, JavaScript, and Bootstrap to ensure consistent behavior across devices/browsers.\nCompleted small assigned tasks and observed backend workflow to understand end-to-end request/response integration.\nProvided regular updates and participated in daily stand-ups to support progress tracking and task coordination."
+            description=(
+                "Built reusable JavaScript UI components aligned with internal standards "
+                "to improve maintainability and speed up feature delivery.\n"
+                "Developed an Angular CRUD application with dynamic data binding and "
+                "form validation, enabling reliable create, read, update, and delete workflows.\n"
+                "Integrated frontend modules with backend REST APIs and debugged end-to-end "
+                "data-flow and state issues across client-server boundaries."
+            )
         )
         self.stdout.write(self.style.SUCCESS('Created experience entries'))
 
         # Projects
         Project.objects.all().delete()
         Project.objects.create(
-            title="Kernel Buffer Overflow Attack & Defense",
-            description="Reproduced privilege escalation via buffer overflow in a custom Linux kernel module. Designed and implemented robust defenses including bounds checks and stack canary concepts.",
+            title="Kernel Buffer Overflow — Attack & Defense",
+            description=(
+                "Implemented a vulnerable Linux kernel module in C and reproduced "
+                "buffer-overflow-based privilege escalation in a controlled environment "
+                "to analyze kernel memory vulnerabilities. Designed and evaluated bounds "
+                "checking, input validation, and stack-canary mitigations while "
+                "benchmarking mitigation overhead through micro-tests."
+            ),
             technologies="C, Linux Kernel Modules, Kernel Memory Management, GCC, Make",
-            start_date=date(2025, 6, 1),
-            date=date(2025, 12, 1),
+            date=date(2025, 1, 1),
             link="https://github.com/shreejhu21/Kernel-buffer-Overflow-Attack-and-Defense",
             image_url="https://i.ibb.co/FkdrD8zB/kernel-buffer-overflow.jpg",
-            contribution="Built vulnerable kernel module from scratch; implemented root privilege escalation shellcode in a controlled VM environment.",
-            metrics="Privilege escalation reproduced successfully; zero-day defense overhead < 2% in benchmarking.",
-            demo_command="insmod overflow.ko; ./exploit"
+            contribution=(
+                "Independent project focused on kernel buffer-overflow exploitation "
+                "and defensive mitigation techniques."
+            ),
+            metrics="",
+            demo_command=""
         )
         Project.objects.create(
-            title="EFTT: Encrypted File Transfer Tool Client–Server System",
-            description="Developed a high-performance C-based file transfer system with low-level socket programming and AES encryption. Optimized for concurrent multi-client environments.",
-            technologies="C, TCP Sockets, POSIX Threads, Linux, File I/O",
-            start_date=date(2025, 6, 1),
-            date=date(2025, 12, 1),
+            title="Encrypted File Transfer Tool — Client–Server System",
+            description=(
+                "Implemented a TCP client in C to encrypt and transmit files with metadata, "
+                "dynamic buffer management, partial-send handling, and server acknowledgments. "
+                "Managed binary file I/O while developing shared socket, signal-handling, "
+                "directory-management, and error-handling utilities."
+            ),
+            technologies="C, TCP Sockets, POSIX Threads, Linux, File I/O, XOR Cipher",
+            date=date(2025, 1, 1),
             link="https://github.com/shreejhu21/EFTT",
             image_url="https://i.ibb.co/8DHwx2rm/encrypted-file-transfer.jpg",
-            contribution="Architected multi-threaded server using POSIX threads; implemented custom chunking protocol for reliable 1GB+ file transfers.",
-            metrics="Achieved 95% line-rate throughput; successfully tested with 20+ simultaneous clients without data corruption.",
-            demo_command="./server 8080; ./client 127.0.0.1 8080 file.txt"
+            contribution=(
+                "TCP client implementation and common utilities including socket handling, "
+                "file I/O, dynamic memory management, signal handling, and error handling."
+            ),
+            metrics="",
+            demo_command=""
         )
         Project.objects.create(
-            title="SiteScan: OWASP Zapper Web Scanner",
-            description="Engineered an automated web security auditor using Python and Django. Integrated popular scanning engines to detect and report vulnerabilities including SQLi and XSS.",
-            technologies="Python, Django, HTTP, HTML/CSS, Wapiti",
-            start_date=date(2025, 1, 1),
-            date=date(2025, 5, 1),
+            title="Automated Web Vulnerability Scanner",
+            description=(
+                "Built a Django application integrating Nuclei and OWASP ZAP to automate "
+                "web vulnerability scanning through a user-facing interface. Processed "
+                "scanner outputs into severity-based findings and risk levels, generating "
+                "structured results and downloadable security reports."
+            ),
+            technologies="Python, Django, HTTP, HTML/CSS, Nuclei, OWASP ZAP",
+            date=date(2024, 1, 1),
             link="https://github.com/shreejhu21/sitescan",
             image_url="https://i.ibb.co/Rpmmm0f0/owasp-scanner.jpg",
-            contribution="Integrated Wapiti engine into a custom Django dashboard; automated CSV-to-PDF report generation for security audits.",
-            metrics="Identified 15+ distinct OWASP Top 10 vulnerabilities in test labs; reduced manual scanning time by 70%.",
-            demo_command="python manage.py runserver; # Nav to /scan"
+            contribution=(
+                "Undergraduate final-semester group project focused on Django-based "
+                "scanner integration and security result processing."
+            ),
+            metrics="",
+            demo_command=""
         )
         self.stdout.write(self.style.SUCCESS('Created project entries'))
 
         # Skills
         Skill.objects.all().delete()
         skills_data = {
-            'LANG': ['Python', 'C', 'C++', 'JavaScript', 'SQL'],
-            'FRAME': ['Django', 'Angular', 'HTML', 'CSS', 'Bootstrap', 'REST APIs'],
-            'DB': ['PostgreSQL', 'MongoDB', 'Git', 'GitHub', 'Docker', 'Linux', 'Visual Studio Code'],
-            'CONC': ['Data Structures & Algorithms', 'Object-Oriented Programming', 'Database Management Systems', 'Operating Systems', 'Computer Networks', 'TCP/IP', 'Multithreading', 'Memory Management', 'Web Security']
+            'PROG': [
+                'Python', 'C', 'C++', 'SQL', 'JavaScript'
+            ],
+
+            'CYBER': [
+                'Web Security',
+                'Vulnerability Assessment',
+                'SQL Injection',
+                'XSS',
+                'CSRF',
+                'Buffer Overflow',
+                'Privilege Escalation',
+                'Input Validation'
+            ],
+
+            'NET': [
+                'TCP/IP',
+                'TCP Sockets',
+                'HTTP/HTTPS',
+                'DNS',
+                'Routing & Switching',
+                'Network Protocols'
+            ],
+
+            'SYS': [
+                'Linux',
+                'Linux Kernel Modules',
+                'Memory Management',
+                'Multithreading',
+                'POSIX Threads',
+                'System Calls',
+                'File I/O',
+                'Signal Handling'
+            ],
+
+            'TOOLS': [
+                'Nuclei',
+                'OWASP ZAP',
+                'Docker',
+                'Git',
+                'GitHub',
+                'GCC',
+                'Make',
+                'VS Code'
+            ],
+
+            'WEBDB': [
+                'PostgreSQL',
+                'MongoDB',
+                'Django',
+                'REST APIs',
+                'HTML/CSS'
+            ]
         }
         
         for category, skills in skills_data.items():
@@ -117,31 +201,31 @@ class Command(BaseCommand):
         # Capabilities
         Capability.objects.all().delete()
         Capability.objects.create(
-            title="Full Stack Development",
-            description="Building scalable web applications with Django, Angular, and modern JavaScript. Expertise in RESTful APIs and responsive UI design.",
-            icon="fas fa-layer-group"
+            title="Cybersecurity & Vulnerability Assessment",
+            description="Web security, vulnerability assessment, secure coding, and automated security testing using tools including Nuclei and OWASP ZAP.",
+            icon="fas fa-shield-alt"
         )
         Capability.objects.create(
-            title="Systems Programming",
-            description="Low-level programming with C/C++, memory management, and Linux kernel module development. Understanding of OS internals and multithreading.",
+            title="Networking",
+            description="TCP/IP, TCP socket programming, HTTP/HTTPS, DNS, routing and switching, and network protocol fundamentals.",
+            icon="fas fa-network-wired"
+        )
+        Capability.objects.create(
+            title="Linux & Systems Security",
+            description="Linux systems, kernel modules, memory management, buffer-overflow analysis, privilege escalation, system calls, and multithreading.",
             icon="fas fa-microchip"
         )
         Capability.objects.create(
-            title="Database Management",
-            description="Designing efficient database schemas and managing data with PostgreSQL and MongoDB. Proficient in SQL and ORM technologies.",
-            icon="fas fa-database"
+            title="Software Engineering",
+            description="Building reliable applications using Python, C/C++, JavaScript, Django, REST APIs, SQL, Docker, and Git.",
+            icon="fas fa-code"
         )
-        Capability.objects.create(
-            title="Cybersecurity & Network Security",
-            description="Vulnerability assessment, secure coding practices, and network defense strategies. Experience with OWASP tools and kernel-level security.",
-            icon="fas fa-shield-alt"
-        )
-        self.stdout.write(self.style.SUCCESS(f'Created capability entries'))
+        self.stdout.write(self.style.SUCCESS('Created capability entries'))
 
         # Certifications
         Certification.objects.all().delete()
         Certification.objects.create(
-            name="Python Crash Course",
+            name="Crash Course on Python",
             issuer="Google",
             date=date(2022, 8, 1)
         )
@@ -157,6 +241,11 @@ class Command(BaseCommand):
         Leadership.objects.create(
             role="Treasurer",
             organization="CS-GSO (Computer Science Graduate Student Organization)",
-            description="Managed budgeting, expense tracking, and reimbursements to support student organization events and operations. Assisted with event planning, outreach, scheduling, and on-site coordination beyond finance responsibilities. Provided technical support during events, including AV setup, presentation support, and troubleshooting."
+            description=(
+                "Managed CS-GSO budgeting, expense tracking, and reimbursements to support "
+                "student events and organizational operations. Provided technical support "
+                "for CS-GSO events, including AV setup, presentation systems, and on-site "
+                "troubleshooting."
+            )
         )
         self.stdout.write(self.style.SUCCESS('Created leadership entries'))

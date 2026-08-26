@@ -55,22 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
-
-                // Animate progress bars if within this section
-                if (entry.target.querySelector('.progress-line')) {
-                    const progressLines = entry.target.querySelectorAll('.progress-line');
-                    progressLines.forEach(line => {
-                        const width = line.getAttribute('data-width');
-                        line.querySelector('span').style.width = width;
-                    });
-                }
-
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.section-title, .capability-card, .project-card, .skill-group, .timeline-item').forEach(el => {
+    document.querySelectorAll('.section-title, .capability-card, .project-card, .skill-group, .timeline-item, .cert-item, .leadership-item').forEach(el => {
         el.classList.add('hidden');
         observer.observe(el);
     });
@@ -93,35 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start typing after a small delay
         setTimeout(typeWriter, 1000);
     }
-
-    // Cursor Trail Effect
-    const cursorTrail = document.getElementById('cursor-trail');
-    let lastX = 0;
-    let lastY = 0;
-    let particleCount = 0;
-    const maxParticles = 30;
-
-    document.addEventListener('mousemove', (e) => {
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        // Only create particles if mouse moved significantly
-        if (distance > 10 && particleCount < maxParticles) {
-            const particle = document.createElement('div');
-            particle.className = 'cursor-particle';
-            particle.style.left = e.clientX + 'px';
-            particle.style.top = e.clientY + 'px';
-            cursorTrail.appendChild(particle);
-            particleCount++;
-
-            setTimeout(() => {
-                particle.remove();
-                particleCount--;
-            }, 1000);
-        }
-
-        lastX = e.clientX;
-        lastY = e.clientY;
-    });
 });

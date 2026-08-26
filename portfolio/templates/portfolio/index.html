@@ -5,14 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ profile.name }} | Portfolio</title>
+    <title>Shreejha Sukanthan | Cybersecurity & Network Security</title>
+    <meta name="description"
+        content="Portfolio of Shreejha Sukanthan, M.S. Computer Science student focused on cybersecurity, network security, Linux, systems security, and vulnerability assessment.">
+    <meta property="og:title"
+        content="Shreejha Sukanthan | Cybersecurity & Network Security">
+    <meta property="og:description"
+        content="Cybersecurity, networking, Linux systems, vulnerability assessment, and systems security projects.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
 </head>
 
 <body>
@@ -20,7 +26,6 @@
         <div class="blob-extra"></div>
     </div>
     <div class="noise-overlay"></div>
-    <div id="cursor-trail"></div>
 
     <nav class="navbar">
         <div class="container">
@@ -53,16 +58,24 @@
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number">3</span>
-                        <span class="stat-label">Security + Systems Projects</span>
+                        <span class="stat-label">Featured Security Projects</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">6 Mo.</span>
-                        <span class="stat-label">Angular Internship</span>
+                        <span class="stat-number">2026</span>
+                        <span class="stat-label">M.S. CS Graduation</span>
                     </div>
                 </div>
 
                 <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+                    <a href="#projects" class="btn btn-primary">
+                        View Projects <i class="fas fa-arrow-right"></i>
+                    </a>
+
+                    <a href="{% static 'resume/Shreejha_Sukanthan_Resume.pdf' %}"
+                       target="_blank"
+                       class="btn btn-outline">
+                        Download Resume <i class="fas fa-download"></i>
+                    </a>
                 </div>
 
                 <div class="social-links">
@@ -99,8 +112,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">What I Do</h2>
-                <p class="section-subtitle">Combining security expertise with full-stack engineering to build robust
-                    systems.</p>
+                <p class="section-subtitle">Hands-on experience across cybersecurity, networking, Linux systems, and secure software development.</p>
             </div>
 
             <div class="capabilities-grid">
@@ -125,17 +137,12 @@
 
             <div class="skills-wrapper">
                 {% for category, skills in skills_by_category.items %}
-                <div class="skill-group {% if 'Core Concepts' in category %}wide-group{% endif %}">
+                <div class="skill-group glass-card">
                     <h3 class="skill-category-title">{{ category }}</h3>
-                    <div class="skill-bars">
+                    <div class="skill-chips">
                         {% for skill in skills %}
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>{{ skill.name }}</span>
-                            </div>
-                            <div class="progress-line" data-width="{% cycle '90%' '85%' '80%' '95%' %}">
-                                <span></span>
-                            </div>
+                        <div class="skill-chip">
+                            {{ skill.name }}
                         </div>
                         {% endfor %}
                     </div>
@@ -177,10 +184,7 @@
                         <div class="project-content">
                             <div class="project-meta">
                                 <span class="project-date">
-                                    {% if project.start_date %}
-                                    {{ project.start_date|date:"M Y" }} -
-                                    {% endif %}
-                                    {{ project.date|date:"M Y" }}
+                                    {{ project.date|date:"Y" }}
                                 </span>
                             </div>
                             <h3>{{ project.title }}</h3>
@@ -210,7 +214,7 @@
                             </div>
 
                             <div class="tech-tags">
-                                {% for tech in project.technology_list|slice:":5" %}
+                                {% for tech in project.technology_list %}
                                 <span class="tech-tag">{{ tech }}</span>
                                 {% endfor %}
                             </div>
@@ -316,17 +320,24 @@
             <div class="contact-wrapper glass-card">
                 <div class="contact-text">
                     <h2>Let's Work Together</h2>
-                    <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
-                        I'll try my best to get back to you!</p>
+                    <p>I'm currently exploring opportunities in Cybersecurity, Network Security, Security Engineering, SOC/Security Operations, Systems Security, and related technical roles.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <span>{{ profile.email }}</span>
                         </div>
+                        {% if profile.linkedin %}
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>{{ profile.phone }}</span>
+                            <i class="fab fa-linkedin-in"></i>
+                            <a href="{{ profile.linkedin }}" target="_blank" style="color: #fff; text-decoration: none;">LinkedIn</a>
                         </div>
+                        {% endif %}
+                        {% if profile.github %}
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="{{ profile.github }}" target="_blank" style="color: #fff; text-decoration: none;">GitHub</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="contact-action">

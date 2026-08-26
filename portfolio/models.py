@@ -59,13 +59,15 @@ class Project(models.Model):
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [
-        ('LANG', 'Languages'),
-        ('FRAME', 'Frameworks / Web Technologies'),
-        ('DB', 'Databases / Tools'),
-        ('CONC', 'Core Concepts & Systems / Security'),
+        ('PROG', 'Programming'),
+        ('CYBER', 'Cybersecurity'),
+        ('NET', 'Networking'),
+        ('SYS', 'Systems'),
+        ('TOOLS', 'Security & Development Tools'),
+        ('WEBDB', 'Databases / Web'),
     ]
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=5, choices=CATEGORY_CHOICES)
+    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
     
     def __str__(self):
         return self.name
